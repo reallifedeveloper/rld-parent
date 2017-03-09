@@ -6,11 +6,19 @@
 
     <groupId>com.reallifedeveloper</groupId>
     <artifactId>rld-parent</artifactId>
-    <version>4</version>
+    <version>5</version>
     <packaging>pom</packaging>
 
-    <name>RealLifeDeveloper Parent</name>
+    <name>${project.groupId}:${project.artifactId}</name>
     <description>Common Maven configuration for RealLifeDeveloper sample code.</description>
+    <url>http://reallifedeveloper.com/</url>
+
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>http://www.opensource.org/licenses/mit-license.php</url>
+        </license>
+    </licenses>
 
     <organization>
         <name>reallifedeveloper.com</name>
@@ -21,58 +29,56 @@
         <developer>
             <id>rld</id>
             <name>RealLifeDeveloper</name>
-            <email>reallife.developer4711@gmail.com</email>
+            <email>rld@reallifedeveloper.com</email>
+            <organization>reallifedeveloper.com</organization>
+            <organizationUrl>http://reallifedeveloper.com/</organizationUrl>
         </developer>
     </developers>
 
     <properties>
-        <rld-build-tools.version>74</rld-build-tools.version>
-
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven.build.timestamp.format>yyyy-MM-dd'T'HH:mm:ssZ</maven.build.timestamp.format>
 
-        <tomcat.version>8.0.15</tomcat.version>
-        <spring.version>4.1.6.RELEASE</spring.version>
-        <spring-security.version>4.0.1.RELEASE</spring-security.version>
-        <spring-data-jpa.version>1.7.1.RELEASE</spring-data-jpa.version>
-        <hibernate.version>4.3.8.Final</hibernate.version>
-        <hibernate-spatial.version>4.3</hibernate-spatial.version>
+        <tomcat.version>8.0.41</tomcat.version>
+        <spring.version>4.3.7.RELEASE</spring.version>
+        <spring-security.version>4.2.2.RELEASE</spring-security.version>
+        <spring-data-jpa.version>1.11.1.RELEASE</spring-data-jpa.version>
+        <hibernate.version>5.2.8.Final</hibernate.version>
         <servlet-api.version>3.1.0</servlet-api.version>
         <taglibs-standard.version>1.2.5</taglibs-standard.version>
         <jaxrs.version>2.0.1</jaxrs.version>
-        <cxf.version>3.0.8</cxf.version>
-        <jettison.version>1.3.7</jettison.version>
+        <cxf.version>3.1.10</cxf.version>
+        <jettison.version>1.3.8</jettison.version>
         <jackson.version>1.9.13</jackson.version>
-        <gson.version>2.3.1</gson.version>
-        <commons-lang.version>3.3.2</commons-lang.version>
-        <commons-net.version>3.3</commons-net.version>
-        <ftpserver.version>1.0.6</ftpserver.version>
-        <ehcache.version>2.9.0</ehcache.version>
-        <geotools.version>12.1</geotools.version>
-        <markdown4j.version>2.2-cj-1.0</markdown4j.version>
-        <slf4j.version>1.7.10</slf4j.version>
+        <gson.version>2.8.0</gson.version>
+        <commons-lang.version>3.5</commons-lang.version>
+        <commons-net.version>3.6</commons-net.version>
+        <ftpserver.version>1.1.0</ftpserver.version>
+        <ehcache.version>2.10.3</ehcache.version>
+        <geotools.version>16.2</geotools.version>
+        <markdown4j.version>2.2-cj-1.1</markdown4j.version>
+        <slf4j.version>1.7.24</slf4j.version>
         <log4j.version>1.2.17</log4j.version>
-        <sqlserver-sqljdbc4.version>6.0.7507.100</sqlserver-sqljdbc4.version>
         <jtds.version>1.3.1</jtds.version>
         <postgresql.version>42.0.0</postgresql.version>
-        <flyway.version>4.0.3</flyway.version>
-        <hsqldb.version>2.3.2</hsqldb.version>
-        <rabbitmq.version>3.4.3</rabbitmq.version>
+        <flyway.version>4.1.2</flyway.version>
+        <hsqldb.version>2.3.4</hsqldb.version>
+        <rabbitmq.version>4.1.0</rabbitmq.version>
         <junit.version>4.12</junit.version>
-        <dbunit.version>2.5.2</dbunit.version>
+        <dbunit.version>2.5.3</dbunit.version>
         <mockito.version>1.10.19</mockito.version>
-        <fitnesse.version>20140901</fitnesse.version>
-        <selenium.version>2.44.0</selenium.version>
-        <soapui.version>5.1.2</soapui.version>
+        <fitnesse.version>20161106</fitnesse.version>
+        <selenium.version>3.3.0</selenium.version>
+        <soapui.version>5.2.1</soapui.version>
         <findbugs.version>3.0.1</findbugs.version>
-        <wiremock.version>2.1.7</wiremock.version>
+        <wiremock.version>2.5.1</wiremock.version>
         <hamcrest.version>1.3</hamcrest.version>
 
         <maven-checkstyle-plugin.version>2.17</maven-checkstyle-plugin.version>
-        <maven-pmd-plugin.version>3.3</maven-pmd-plugin.version>
-        <jacoco-maven-plugin.version>0.7.7.201606060606</jacoco-maven-plugin.version>
+        <maven-pmd-plugin.version>3.6</maven-pmd-plugin.version>
+        <jacoco-maven-plugin.version>0.7.9</jacoco-maven-plugin.version>
 
         <minimum.code-coverage>0.85</minimum.code-coverage>
 
@@ -171,13 +177,7 @@
             <dependency>
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-spatial</artifactId>
-                <version>${hibernate-spatial.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <artifactId>postgresql</artifactId>
-                        <groupId>postgresql</groupId>
-                    </exclusion>
-                </exclusions>
+                <version>${hibernate.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.google.code.gson</groupId>
@@ -316,11 +316,6 @@
                 <version>${tomcat.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.microsoft.sqlserver</groupId>
-                <artifactId>sqljdbc4</artifactId>
-                <version>${sqlserver-sqljdbc4.version}</version>
-            </dependency>
-            <dependency>
                 <groupId>net.sourceforge.jtds</groupId>
                 <artifactId>jtds</artifactId>
                 <version>${jtds.version}</version>
@@ -383,7 +378,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
-                <version>2.18.1</version>
+                <version>2.19.1</version>
                 <executions>
                     <execution>
                         <id>integration-test</id>
@@ -411,13 +406,6 @@ checkstyle.suppressions=/rld/checkstyle/checkstyle-suppressions.xml
                     <enableRulesSummary>false</enableRulesSummary>
                     <includeTestSourceDirectory>true</includeTestSourceDirectory>
                 </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>com.reallifedeveloper</groupId>
-                        <artifactId>rld-build-tools</artifactId>
-                        <version>${rld-build-tools.version}</version>
-                    </dependency>
-                </dependencies>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -431,13 +419,6 @@ checkstyle.suppressions=/rld/checkstyle/checkstyle-suppressions.xml
                     <sourceEncoding>UTF-8</sourceEncoding>
                     <format>xml</format>
                 </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>com.reallifedeveloper</groupId>
-                        <artifactId>rld-build-tools</artifactId>
-                        <version>${rld-build-tools.version}</version>
-                    </dependency>
-                </dependencies>
             </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -449,13 +430,6 @@ checkstyle.suppressions=/rld/checkstyle/checkstyle-suppressions.xml
                     <excludeFilterFile>/rld/findbugs/findbugs-exclude.xml</excludeFilterFile>
                     <includeTests>false</includeTests>
                 </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>com.reallifedeveloper</groupId>
-                        <artifactId>rld-build-tools</artifactId>
-                        <version>${rld-build-tools.version}</version>
-                    </dependency>
-                </dependencies>
             </plugin>
         </plugins>
 
@@ -464,7 +438,7 @@ checkstyle.suppressions=/rld/checkstyle/checkstyle-suppressions.xml
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.2</version>
+                    <version>3.6.1</version>
                     <configuration>
                         <source>${java.version}</source>
                         <target>${java.version}</target>
@@ -476,7 +450,7 @@ checkstyle.suppressions=/rld/checkstyle/checkstyle-suppressions.xml
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-jar-plugin</artifactId>
-                    <version>2.5</version>
+                    <version>3.0.2</version>
                     <executions>
                         <execution>
                             <goals>
@@ -488,7 +462,7 @@ checkstyle.suppressions=/rld/checkstyle/checkstyle-suppressions.xml
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-enforcer-plugin</artifactId>
-                    <version>1.4</version>
+                    <version>1.4.1</version>
                     <configuration>
                         <rules>
                             <requireReleaseDeps />
@@ -499,17 +473,17 @@ checkstyle.suppressions=/rld/checkstyle/checkstyle-suppressions.xml
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
-                    <version>2.18.1</version>
+                    <version>2.19.1</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-war-plugin</artifactId>
-                    <version>2.5</version>
+                    <version>3.0.0</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-resources-plugin</artifactId>
-                    <version>2.7</version>
+                    <version>3.0.2</version>
                     <configuration>
                         <encoding>UTF-8</encoding>
                     </configuration>
@@ -517,25 +491,25 @@ checkstyle.suppressions=/rld/checkstyle/checkstyle-suppressions.xml
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-site-plugin</artifactId>
-                    <version>3.4</version>
+                    <version>3.6</version>
                     <dependencies>
                         <dependency>
                             <!-- Adds support for scp when deploying the site -->
                             <groupId>org.apache.maven.wagon</groupId>
                             <artifactId>wagon-ssh</artifactId>
-                            <version>2.8</version>
+                            <version>2.12</version>
                         </dependency>
                     </dependencies>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-dependency-plugin</artifactId>
-                    <version>2.8</version>
+                    <version>3.0.0</version>
                 </plugin>
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>versions-maven-plugin</artifactId>
-                    <version>2.1</version>
+                    <version>2.3</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.tomcat.maven</groupId>
@@ -545,7 +519,7 @@ checkstyle.suppressions=/rld/checkstyle/checkstyle-suppressions.xml
                 <plugin>
                     <groupId>ru.concerteza.buildnumber</groupId>
                     <artifactId>maven-jgit-buildnumber-plugin</artifactId>
-                    <version>1.2.9</version>
+                    <version>1.2.10</version>
                 </plugin>
                 <plugin>
                     <groupId>org.jacoco</groupId>
@@ -715,6 +689,53 @@ checkstyle.suppressions=/rld/checkstyle/checkstyle-suppressions.xml
             </build>
         </profile>
         <profile>
+            <id>deploy</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <version>3.0.1</version>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>2.10.4</version>
+                        <executions>
+                            <execution>
+                                <id>attach-javadocs</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.6</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
             <id>jacoco-bat</id>
             <build>
                 <plugins>
@@ -772,21 +793,22 @@ checkstyle.suppressions=/rld/checkstyle/checkstyle-suppressions.xml
         <connection>scm:git:https://github.com/reallifedeveloper/rld-parent.git</connection>
     </scm>
 
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
+
     <repositories>
         <repository>
             <id>osgeo</id>
             <name>Open Source Geospatial Foundation Repository</name>
             <url>http://download.osgeo.org/webdav/geotools/</url>
-        </repository>
-        <repository>
-            <id>geoserver</id>
-            <name>Boundless GeoServer Repository</name>
-            <url>http://repo.boundlessgeo.com/main</url>
-        </repository>
-        <repository>
-            <id>hibernatespatial</id>
-            <name>Hibernate Spatial Repository</name>
-            <url>http://www.hibernatespatial.org/repository</url>
         </repository>
     </repositories>
 
@@ -810,7 +832,7 @@ checkstyle.suppressions=/rld/checkstyle/checkstyle-suppressions.xml
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-project-info-reports-plugin</artifactId>
-                <version>2.7</version>
+                <version>2.9</version>
                 <configuration>
                     <dependencyLocationsEnabled>false</dependencyLocationsEnabled>
                 </configuration>
@@ -818,7 +840,7 @@ checkstyle.suppressions=/rld/checkstyle/checkstyle-suppressions.xml
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.9.1</version>
+                <version>2.10.4</version>
                 <configuration>
                     <encoding>UTF-8</encoding>
                     <maxmemory>512m</maxmemory>
@@ -867,7 +889,7 @@ checkstyle.suppressions=/rld/checkstyle/checkstyle-suppressions.xml
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-changes-plugin</artifactId>
-                <version>2.11</version>
+                <version>2.12.1</version>
                 <configuration>
                     <jiraUser>${jira.user}</jiraUser>
                     <jiraPassword>${jira.password}</jiraPassword>
@@ -880,7 +902,7 @@ checkstyle.suppressions=/rld/checkstyle/checkstyle-suppressions.xml
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
-                <version>2.8</version>
+                <version>3.0.0</version>
                 <reportSets>
                     <reportSet>
                         <reports>
@@ -902,7 +924,7 @@ checkstyle.suppressions=/rld/checkstyle/checkstyle-suppressions.xml
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-report-plugin</artifactId>
-                <version>2.18.1</version>
+                <version>2.19.1</version>
                 <reportSets>
                     <reportSet>
                         <reports>
@@ -1000,7 +1022,7 @@ checkstyle.suppressions=/rld/checkstyle/checkstyle-suppressions.xml
             <plugin>
                 <groupId>org.owasp</groupId>
                 <artifactId>dependency-check-maven</artifactId>
-                <version>1.4.4.1</version>
+                <version>1.4.5</version>
                 <configuration>
                     <!-- The plugin can only read a file, not a resource from classpath. -->
                     <!-- This means that projects that use this parent POM must unpack -->
