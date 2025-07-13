@@ -5,36 +5,18 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.reallifedeveloper</groupId>
+    <parent>
+        <groupId>com.reallifedeveloper</groupId>
+        <artifactId>rld-root-pom</artifactId>
+        <version>5</version>
+    </parent>
+
     <artifactId>rld-parent</artifactId>
-    <version>10</version>
+    <version>11-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>${project.groupId}:${project.artifactId}</name>
-    <description>Common Maven configuration for RealLifeDeveloper sample code.</description>
-    <url>http://reallifedeveloper.com/</url>
-
-    <licenses>
-        <license>
-            <name>MIT License</name>
-            <url>http://www.opensource.org/licenses/mit-license.php</url>
-        </license>
-    </licenses>
-
-    <organization>
-        <name>reallifedeveloper.com</name>
-        <url>http://reallifedeveloper.com/</url>
-    </organization>
-
-    <developers>
-        <developer>
-            <id>rld</id>
-            <name>RealLifeDeveloper</name>
-            <email>rld@reallifedeveloper.com</email>
-            <organization>reallifedeveloper.com</organization>
-            <organizationUrl>http://reallifedeveloper.com/</organizationUrl>
-        </developer>
-    </developers>
+    <name>RealLifeDeveloper Parent POM</name>
+    <description>Common Maven configuration for RealLifeDeveloper projects.</description>
 
     <properties>
         <java.version>17</java.version>
@@ -42,312 +24,31 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven.build.timestamp.format>yyyy-MM-dd'T'HH:mm:ssZ</maven.build.timestamp.format>
 
-        <minimum.maven.version>3.6.3</minimum.maven.version>
         <minimum.code-coverage>0.85</minimum.code-coverage>
 
-        <spring.version>6.2.7</spring.version>
-        <spring-security.version>6.5.0</spring-security.version>
-        <spring-data-bom.version>2024.1.6</spring-data-bom.version>
-        <spring-kafka.version>3.3.6</spring-kafka.version>
-        <javaee-api.version>8.0.1</javaee-api.version>
-        <jakartaee-api.version>10.0.0</jakartaee-api.version>
-        <glassfish-jaxb.version>4.0.5</glassfish-jaxb.version>
-        <cxf.version>4.1.2</cxf.version>
-        <resteasy.version>3.15.6.Final</resteasy.version>
-        <jackson.version>2.19.0</jackson.version>
-        <gson.version>2.13.1</gson.version>
-        <tomcat.version>11.0.7</tomcat.version>
-        <undertow.version>2.3.18.Final</undertow.version>
-        <wildfly-swarm.version>2018.5.0</wildfly-swarm.version>
-        <commons-lang.version>3.17.0</commons-lang.version>
-        <commons-net.version>3.11.1</commons-net.version>
-        <commons-collections.version>4.4</commons-collections.version>
-        <httpcore.version>5.3.2</httpcore.version>
-        <httpclient.version>5.4.1</httpclient.version>
-        <commons-net.version>3.11.1</commons-net.version>
-        <commons-codec.version>1.17.2</commons-codec.version>
-        <slf4j.version>2.0.17</slf4j.version>
-        <log4j.version>2.24.3</log4j.version>
-        <logback.version>1.5.18</logback.version>
-        <hibernate.version>6.6.5.Final</hibernate.version>
-        <hibernate-validator.version>8.0.2.Final</hibernate-validator.version>
-        <ftpserver.version>1.2.1</ftpserver.version>
-        <geotools.version>33.1</geotools.version>
-        <markdown4j.version>2.2-cj-1.1</markdown4j.version>
-        <postgresql.version>42.7.7</postgresql.version>
-        <flyway.version>11.2.0</flyway.version>
-        <hsqldb.version>2.7.4</hsqldb.version>
-        <rabbitmq.version>5.25.0</rabbitmq.version>
+        <rld-bom.version>20250713.1</rld-bom.version>
 
-        <junit.version>5.13.1</junit.version>
-        <junit4.version>4.13.2</junit4.version>
-        <dbunit.version>3.0.0</dbunit.version>
-        <mockito.version>5.18.0</mockito.version>
-        <easymock.version>5.6.0</easymock.version>
-        <equalsverifier.version>4.0</equalsverifier.version>
-        <fitnesse.version>20250223</fitnesse.version>
-        <selenium.version>4.33.0</selenium.version>
-        <spotbugs.version>4.9.3</spotbugs.version>
-
-        <lombok.version>1.18.38</lombok.version>
-        <checkerframework.version>3.49.4</checkerframework.version>
-        <soapui.version>5.8.0</soapui.version>
-        <wiremock.version>3.13.0</wiremock.version>
-
+        <flyway-maven-plugin.version>11.10.1</flyway-maven-plugin.version>
+        <soapui-maven-plugin.version>5.8.0</soapui-maven-plugin.version>
         <maven-checkstyle-plugin.version>3.6.0</maven-checkstyle-plugin.version>
         <maven-pmd-plugin.version>3.26.0</maven-pmd-plugin.version>
-        <spotbugs-maven-plugin.version>4.8.6.6</spotbugs-maven-plugin.version>
+        <spotbugs-maven-plugin.version>4.9.3.1</spotbugs-maven-plugin.version>
         <pitest-maven.version>1.18.2</pitest-maven.version>
         <pitest-junit5-plugin.version>1.2.1</pitest-junit5-plugin.version>
         <jacoco-maven-plugin.version>0.8.12</jacoco-maven-plugin.version>
 
-        <!-- Override the following properties in ~/.m2/settings.xml if necessary -->
+        <!-- Override the following in a profile ~/.m2/settings.xml -->
         <nvd.api.key>Get your OWASP key at https://nvd.nist.gov/developers/request-an-api-key</nvd.api.key>
-        <jira.user>Your JIRA user</jira.user>
-        <jira.password>changeme</jira.password>
     </properties>
 
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-framework-bom</artifactId>
-                <version>${spring.version}</version>
+                <groupId>com.reallifedeveloper</groupId>
+                <artifactId>rld-bom</artifactId>
+                <version>${rld-bom.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.security</groupId>
-                <artifactId>spring-security-bom</artifactId>
-                <version>${spring-security.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.data</groupId>
-                <artifactId>spring-data-bom</artifactId>
-                <version>${spring-data-bom.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.kafka</groupId>
-                <artifactId>spring-kafka-bom</artifactId>
-                <version>${spring-kafka.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>javax</groupId>
-                <artifactId>javaee-api</artifactId>
-                <version>${javaee-api.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>jakarta.platform</groupId>
-                <artifactId>jakarta.jakartaee-bom</artifactId>
-                <version>${jakartaee-api.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.glassfish.jaxb</groupId>
-                <artifactId>jaxb-core</artifactId>
-                <version>${glassfish-jaxb.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.hibernate.orm</groupId>
-                <artifactId>hibernate-core</artifactId>
-                <version>${hibernate.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.hibernate.orm</groupId>
-                <artifactId>hibernate-jpamodelgen</artifactId>
-                <version>${hibernate.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.hibernate.orm</groupId>
-                <artifactId>hibernate-spatial</artifactId>
-                <version>${hibernate.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.google.code.gson</groupId>
-                <artifactId>gson</artifactId>
-                <version>${gson.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.cxf</groupId>
-                <artifactId>cxf-bom</artifactId>
-                <version>${cxf.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson</groupId>
-                <artifactId>jackson-bom</artifactId>
-                <version>${jackson.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.commons</groupId>
-                <artifactId>commons-lang3</artifactId>
-                <version>${commons-lang.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>commons-net</groupId>
-                <artifactId>commons-net</artifactId>
-                <version>${commons-net.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.ftpserver</groupId>
-                <artifactId>ftpserver-core</artifactId>
-                <version>${ftpserver.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.geotools</groupId>
-                <artifactId>gt-geometry</artifactId>
-                <version>${geotools.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.geotools</groupId>
-                <artifactId>gt-shapefile</artifactId>
-                <version>${geotools.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.geotools</groupId>
-                <artifactId>gt-process</artifactId>
-                <version>${geotools.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.geotools</groupId>
-                <artifactId>gt-xml</artifactId>
-                <version>${geotools.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.geotools</groupId>
-                <artifactId>gt-epsg-hsql</artifactId>
-                <version>${geotools.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.geotools</groupId>
-                <artifactId>gt-render</artifactId>
-                <version>${geotools.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.commonjava.googlecode.markdown4j</groupId>
-                <artifactId>markdown4j</artifactId>
-                <version>${markdown4j.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-bom</artifactId>
-                <version>${slf4j.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.logging.log4j</groupId>
-                <artifactId>log4j-bom</artifactId>
-                <version>${log4j.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>ch.qos.logback</groupId>
-                <artifactId>logback-classic</artifactId>
-                <version>${logback.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>ch.qos.logback</groupId>
-                <artifactId>logback-core</artifactId>
-                <version>${logback.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.tomcat</groupId>
-                <artifactId>tomcat-jdbc</artifactId>
-                <version>${tomcat.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.postgresql</groupId>
-                <artifactId>postgresql</artifactId>
-                <version>${postgresql.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.hsqldb</groupId>
-                <artifactId>hsqldb</artifactId>
-                <version>${hsqldb.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.rabbitmq</groupId>
-                <artifactId>amqp-client</artifactId>
-                <version>${rabbitmq.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok</artifactId>
-                <version>${lombok.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.checkerframework</groupId>
-                <artifactId>checker-qual</artifactId>
-                <version>${checkerframework.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.junit</groupId>
-                <artifactId>junit-bom</artifactId>
-                <version>${junit.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
-                <version>${junit4.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.fitnesse</groupId>
-                <artifactId>fitnesse</artifactId>
-                <version>${fitnesse.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.dbunit</groupId>
-                <artifactId>dbunit</artifactId>
-                <version>${dbunit.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.wiremock</groupId>
-                <artifactId>wiremock</artifactId>
-                <version>${wiremock.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.mockito</groupId>
-                <artifactId>mockito-core</artifactId>
-                <version>${mockito.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.easymock</groupId>
-                <artifactId>easymock</artifactId>
-                <version>${easymock.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.seleniumhq.selenium</groupId>
-                <artifactId>selenium-java</artifactId>
-                <version>${selenium.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.spotbugs</groupId>
-                <artifactId>spotbugs-annotations</artifactId>
-                <version>${spotbugs.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.tomakehurst</groupId>
-                <artifactId>wiremock</artifactId>
-                <version>${wiremock.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>nl.jqno.equalsverifier</groupId>
-                <artifactId>equalsverifier</artifactId>
-                <version>${equalsverifier.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -363,18 +64,6 @@
                         <goals>
                             <goal>integration-test</goal>
                             <goal>verify</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-enforcer-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>enforce</id>
-                        <goals>
-                            <goal>enforce</goal>
                         </goals>
                     </execution>
                 </executions>
@@ -435,19 +124,6 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-javadoc-plugin</artifactId>
                     <version>3.11.2</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-enforcer-plugin</artifactId>
-                    <version>3.5.0</version>
-                    <configuration>
-                        <rules>
-                            <requireMavenVersion>
-                                <version>${minimum.maven.version}</version>
-                            </requireMavenVersion>
-                        </rules>
-                        <fail>true</fail>
-                    </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -526,15 +202,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-changes-plugin</artifactId>
-                    <version>2.12.1</version>
-                    <configuration>
-                        <jiraUser>${jira.user}</jiraUser>
-                        <jiraPassword>${jira.password}</jiraPassword>
-                        <onlyCurrentVersion>true</onlyCurrentVersion>
-                        <resolutionIds>Fixed</resolutionIds>
-                        <statusIds>Resolved,Closed</statusIds>
-                        <useJql>true</useJql>
-                    </configuration>
+                    <version>3.0.0-M3</version>
                 </plugin>
                 <plugin>
                     <groupId>ru.concerteza.buildnumber</groupId>
@@ -591,13 +259,6 @@ checkstyle.suppressions=/rld/checkstyle/checkstyle-suppressions.xml
                         <excludeFilterFile>/rld/spotbugs/spotbugs-exclude.xml</excludeFilterFile>
                         <includeTests>false</includeTests>
                     </configuration>
-                    <dependencies>
-                        <dependency>
-                            <groupId>com.github.spotbugs</groupId>
-                            <artifactId>spotbugs</artifactId>
-                            <version>${spotbugs.version}</version>
-                        </dependency>
-                    </dependencies>
                 </plugin>
                 <plugin>
                     <groupId>org.owasp</groupId>
@@ -614,12 +275,12 @@ checkstyle.suppressions=/rld/checkstyle/checkstyle-suppressions.xml
                 <plugin>
                     <groupId>org.flywaydb</groupId>
                     <artifactId>flyway-maven-plugin</artifactId>
-                    <version>${flyway.version}</version>
+                    <version>${flyway-maven-plugin.version}</version>
                 </plugin>
                 <plugin>
                     <groupId>com.smartbear.soapui</groupId>
                     <artifactId>soapui-maven-plugin</artifactId>
-                    <version>${soapui.version}</version>
+                    <version>${soapui-maven-plugin.version}</version>
                 </plugin>
                 <plugin>
                     <groupId>uk.co.javahelp.fitnesse</groupId>
@@ -944,76 +605,6 @@ checkstyle.suppressions=/rld/checkstyle/checkstyle-suppressions.xml
             </build>
         </profile>
         <profile>
-            <id>release</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-enforcer-plugin</artifactId>
-                        <configuration>
-                            <rules>
-                                <requireReleaseVersion />
-                                <requireReleaseDeps />
-                            </rules>
-                        </configuration>
-                        <executions>
-                            <execution>
-                                <id>enforce</id>
-                                <goals>
-                                    <goal>enforce</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-source-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>attach-sources</id>
-                                <goals>
-                                    <goal>jar</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-javadoc-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>attach-javadocs</id>
-                                <goals>
-                                    <goal>jar</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-gpg-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>sign-artifacts</id>
-                                <phase>verify</phase>
-                                <goals>
-                                    <goal>sign</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.sonatype.central</groupId>
-                        <artifactId>central-publishing-maven-plugin</artifactId>
-                        <extensions>true</extensions>
-                        <configuration>
-                            <publishingServerId>sonatype-central</publishingServerId>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
             <id>jacoco-bat</id>
             <build>
                 <plugins>
@@ -1066,22 +657,6 @@ checkstyle.suppressions=/rld/checkstyle/checkstyle-suppressions.xml
         </profile>
     </profiles>
 
-    <scm>
-        <url>https://github.com/reallifedeveloper/rld-parent</url>
-        <connection>scm:git:https://github.com/reallifedeveloper/rld-parent.git</connection>
-    </scm>
-
-    <distributionManagement>
-        <snapshotRepository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
-        <repository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </repository>
-    </distributionManagement>
-
     <repositories>
         <repository>
             <id>osgeo</id>
@@ -1110,7 +685,7 @@ checkstyle.suppressions=/rld/checkstyle/checkstyle-suppressions.xml
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-project-info-reports-plugin</artifactId>
                 <configuration>
-                    <dependencyLocationsEnabled>false</dependencyLocationsEnabled>
+                    <linkOnly>true</linkOnly>
                 </configuration>
             </plugin>
             <plugin>
@@ -1163,6 +738,13 @@ checkstyle.suppressions=/rld/checkstyle/checkstyle-suppressions.xml
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-changes-plugin</artifactId>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>github-changes</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
