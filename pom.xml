@@ -8,7 +8,7 @@
     <parent>
         <groupId>com.reallifedeveloper</groupId>
         <artifactId>rld-root-pom</artifactId>
-        <version>6</version>
+        <version>8</version>
     </parent>
 
     <artifactId>rld-parent</artifactId>
@@ -26,18 +26,18 @@
 
         <minimum.code-coverage>0.85</minimum.code-coverage>
 
-        <rld-bom.version>20250713.3</rld-bom.version>
+        <rld-bom.version>20250713.4</rld-bom.version>
 
-        <flyway-maven-plugin.version>11.10.1</flyway-maven-plugin.version>
+        <flyway-maven-plugin.version>11.10.2</flyway-maven-plugin.version>
         <soapui-maven-plugin.version>5.8.0</soapui-maven-plugin.version>
         <maven-checkstyle-plugin.version>3.6.0</maven-checkstyle-plugin.version>
-        <maven-pmd-plugin.version>3.26.0</maven-pmd-plugin.version>
-        <spotbugs-maven-plugin.version>4.9.3.1</spotbugs-maven-plugin.version>
-        <pitest-maven.version>1.18.2</pitest-maven.version>
-        <pitest-junit5-plugin.version>1.2.1</pitest-junit5-plugin.version>
-        <jacoco-maven-plugin.version>0.8.12</jacoco-maven-plugin.version>
+        <maven-pmd-plugin.version>3.27.0</maven-pmd-plugin.version>
+        <spotbugs-maven-plugin.version>4.9.3.2</spotbugs-maven-plugin.version>
+        <pitest-maven.version>1.20.0</pitest-maven.version>
+        <pitest-junit5-plugin.version>1.2.3</pitest-junit5-plugin.version>
+        <jacoco-maven-plugin.version>0.8.13</jacoco-maven-plugin.version>
 
-        <!-- Override the following in a profile ~/.m2/settings.xml -->
+        <!-- Override the following in a profile in ~/.m2/settings.xml -->
         <nvd.api.key>Get your OWASP key at https://nvd.nist.gov/developers/request-an-api-key</nvd.api.key>
     </properties>
 
