@@ -33,6 +33,7 @@
         <maven-checkstyle-plugin.version>3.6.0</maven-checkstyle-plugin.version>
         <maven-pmd-plugin.version>3.27.0</maven-pmd-plugin.version>
         <spotbugs-maven-plugin.version>4.9.3.2</spotbugs-maven-plugin.version>
+        <findsecbugs-plugin.version>1.14.0</findsecbugs-plugin.version>
         <pitest-maven.version>1.20.0</pitest-maven.version>
         <pitest-junit5-plugin.version>1.2.3</pitest-junit5-plugin.version>
         <jacoco-maven-plugin.version>0.8.13</jacoco-maven-plugin.version>
@@ -258,6 +259,13 @@ checkstyle.suppressions=/rld/checkstyle/checkstyle-suppressions.xml
                         <threshold>Low</threshold>
                         <excludeFilterFile>/rld/spotbugs/spotbugs-exclude.xml</excludeFilterFile>
                         <includeTests>false</includeTests>
+                        <plugins>
+                            <plugin>
+                                <groupId>com.h3xstream.findsecbugs</groupId>
+                                <artifactId>findsecbugs-plugin</artifactId>
+                                <version>${findsecbugs-plugin.version}</version>
+                            </plugin>
+                        </plugins>
                     </configuration>
                 </plugin>
                 <plugin>
