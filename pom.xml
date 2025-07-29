@@ -8,7 +8,7 @@
     <parent>
         <groupId>com.reallifedeveloper</groupId>
         <artifactId>rld-root-pom</artifactId>
-        <version>8</version>
+        <version>9</version>
     </parent>
 
     <artifactId>rld-parent</artifactId>
@@ -26,8 +26,9 @@
 
         <minimum.code-coverage>0.85</minimum.code-coverage>
 
-        <rld-bom.version>20250713.4</rld-bom.version>
+        <rld-bom.version>20250729.1</rld-bom.version>
 
+        <jdepend-maven-plugin.version>1.0.0</jdepend-maven-plugin.version>
         <flyway-maven-plugin.version>11.10.2</flyway-maven-plugin.version>
         <soapui-maven-plugin.version>5.8.0</soapui-maven-plugin.version>
         <maven-checkstyle-plugin.version>3.6.0</maven-checkstyle-plugin.version>
@@ -69,6 +70,17 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-toolchains-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>toolchain</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
 
         <pluginManagement>
@@ -77,13 +89,6 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-toolchains-plugin</artifactId>
                     <version>3.2.0</version>
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>toolchain</goal>
-                            </goals>
-                        </execution>
-                    </executions>
                     <configuration>
                         <toolchains>
                             <jdk>
@@ -101,6 +106,7 @@
                         <target>${java.version}</target>
                         <testSource>${java.version}</testSource>
                         <testTarget>${java.version}</testTarget>
+                        <encoding>UTF-8</encoding>
                     </configuration>
                 </plugin>
                 <!-- Always generate a *-tests.jar with all test code -->
@@ -151,19 +157,6 @@
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-site-plugin</artifactId>
-                    <version>3.21.0</version>
-                    <dependencies>
-                        <dependency>
-                            <!-- Adds support for scp when deploying the site -->
-                            <groupId>org.apache.maven.wagon</groupId>
-                            <artifactId>wagon-ssh</artifactId>
-                            <version>3.5.3</version>
-                        </dependency>
-                    </dependencies>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-dependency-plugin</artifactId>
                     <version>3.8.1</version>
                 </plugin>
@@ -188,9 +181,9 @@
                     <version>3.2.1</version>
                 </plugin>
                 <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
+                    <groupId>com.reallifedeveloper</groupId>
                     <artifactId>jdepend-maven-plugin</artifactId>
-                    <version>2.1</version>
+                    <version>${jdepend-maven-plugin.version}</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -218,6 +211,9 @@
                         <includes>
                             <include>com/reallifedeveloper/**/*</include>
                         </includes>
+                        <excludes>
+                            <exclude>**/*_*/**</exclude>
+                        </excludes>
                         <propertyName>jacoco.agent.argLine</propertyName>
                     </configuration>
                 </plugin>
@@ -462,13 +458,6 @@ checkstyle.suppressions=/rld/checkstyle/checkstyle-suppressions.xml
                                     </rules>
                                 </configuration>
                             </execution>
-                            <execution>
-                                <id>jacoco-report</id>
-                                <phase>site</phase>
-                                <goals>
-                                    <goal>report</goal>
-                                </goals>
-                            </execution>
                         </executions>
                     </plugin>
                     <plugin>
@@ -483,6 +472,54 @@ checkstyle.suppressions=/rld/checkstyle/checkstyle-suppressions.xml
                         <artifactId>maven-failsafe-plugin</artifactId>
                         <configuration>
                             <argLine>${jacoco.agent.argLine}</argLine>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>errorprone</id>
+            <activation>
+                <property>
+                    <name>checkAll</name>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-compiler-plugin</artifactId>
+                        <configuration>
+                            <fork>true</fork>
+                            <compilerArgs>
+                                <arg>-XDcompilePolicy=simple</arg>
+                                <arg>--should-stop=ifError=FLOW</arg>
+                                <arg>-Xplugin:ErrorProne -XepOpt:NullAway:AnnotatedPackages=com.reallifedeveloper</arg>
+                                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED</arg>
+                                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.file=ALL-UNNAMED</arg>
+                                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.main=ALL-UNNAMED</arg>
+                                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.model=ALL-UNNAMED</arg>
+                                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.parser=ALL-UNNAMED</arg>
+                                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.processing=ALL-UNNAMED</arg>
+                                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED</arg>
+                                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED</arg>
+                                <arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED</arg>
+                                <arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.comp=ALL-UNNAMED</arg>
+                            </compilerArgs>
+                            <annotationProcessorPaths>
+                                <path>
+                                    <groupId>com.google.errorprone</groupId>
+                                    <artifactId>error_prone_core</artifactId>
+                                </path>
+                                <path>
+                                    <groupId>com.uber.nullaway</groupId>
+                                    <artifactId>nullaway</artifactId>
+                                </path>
+                                <path>
+                                    <groupId>org.projectlombok</groupId>
+                                    <artifactId>lombok</artifactId>
+                                </path>
+                            </annotationProcessorPaths>
                         </configuration>
                     </plugin>
                 </plugins>
@@ -537,6 +574,20 @@ checkstyle.suppressions=/rld/checkstyle/checkstyle-suppressions.xml
                     <name>checkAll</name>
                 </property>
             </activation> -->
+            <dependencies>
+                <dependency>
+                    <groupId>biz.aQute.bnd</groupId>
+                    <artifactId>biz.aQute.bnd.annotation</artifactId>
+                    <version>6.3.1</version>
+                    <scope>provided</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.osgi</groupId>
+                    <artifactId>osgi.annotation</artifactId>
+                    <version>8.1.0</version>
+                    <scope>provided</scope>
+                </dependency>
+            </dependencies>
             <build>
                 <plugins>
                     <plugin>
@@ -551,13 +602,15 @@ checkstyle.suppressions=/rld/checkstyle/checkstyle-suppressions.xml
                                 <path>
                                     <groupId>org.projectlombok</groupId>
                                     <artifactId>lombok</artifactId>
-                                    <version>${lombok.version}</version>
                                 </path>
                                 <path>
                                     <groupId>org.checkerframework</groupId>
                                     <artifactId>checker</artifactId>
-                                    <version>${checkerframework.version}</version>
                                 </path>
+                                <!-- <path>
+                                    <groupId>com.google.errorprone</groupId>
+                                    <artifactId>error_prone_core</artifactId>
+                                </path> -->
                             </annotationProcessorPaths>
                             <annotationProcessors>
                                 <annotationProcessor>
@@ -576,7 +629,7 @@ checkstyle.suppressions=/rld/checkstyle/checkstyle-suppressions.xml
                                 <!-- <arg>-Werror</arg> -->
                                 <arg>-Xlint:all,-path</arg>
                                 <arg>
-                                    <![CDATA[-AskipDefs=^.*Test$|^.*IT$|^.*[.]generated[.].*$]]>
+                                    <![CDATA[-AskipDefs=^.*Test$|^.*IT$|^.*[.]generated[.].*$|^.*_.*$]]>
                                 </arg>
                                 <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED</arg>
                                 <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED</arg>
@@ -692,9 +745,6 @@ checkstyle.suppressions=/rld/checkstyle/checkstyle-suppressions.xml
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-project-info-reports-plugin</artifactId>
-                <configuration>
-                    <linkOnly>true</linkOnly>
-                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -770,7 +820,7 @@ checkstyle.suppressions=/rld/checkstyle/checkstyle-suppressions.xml
                 <artifactId>taglist-maven-plugin</artifactId>
             </plugin>
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
+                <groupId>com.reallifedeveloper</groupId>
                 <artifactId>jdepend-maven-plugin</artifactId>
             </plugin>
             <plugin>
@@ -788,6 +838,13 @@ checkstyle.suppressions=/rld/checkstyle/checkstyle-suppressions.xml
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>report</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -797,13 +854,6 @@ checkstyle.suppressions=/rld/checkstyle/checkstyle-suppressions.xml
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-pmd-plugin</artifactId>
                 <reportSets>
-                    <reportSet>
-                        <id>pmd-aggregate</id>
-                        <reports>
-                            <report>aggregate-pmd</report>
-                            <report>aggregate-cpd</report>
-                        </reports>
-                    </reportSet>
                     <reportSet>
                         <id>pmd-non-aggregate</id>
                         <reports>
