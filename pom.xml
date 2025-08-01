@@ -8,7 +8,7 @@
     <parent>
         <groupId>com.reallifedeveloper</groupId>
         <artifactId>rld-root-pom</artifactId>
-        <version>9</version>
+        <version>10</version>
     </parent>
 
     <artifactId>rld-parent</artifactId>
