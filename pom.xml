@@ -27,6 +27,7 @@
         <minimum.code-coverage>0.85</minimum.code-coverage>
 
         <rld-bom.version>20250729.1</rld-bom.version>
+        <rld-build-tools.version>2.0.29</rld-build-tools.version>
 
         <jdepend-maven-plugin.version>1.0.0</jdepend-maven-plugin.version>
         <flyway-maven-plugin.version>11.10.2</flyway-maven-plugin.version>
@@ -52,8 +53,26 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <dependency>
+                <groupId>com.reallifedeveloper</groupId>
+                <artifactId>rld-build-tools</artifactId>
+                <version>${rld-build-tools.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.github.spotbugs</groupId>
+            <artifactId>spotbugs-annotations</artifactId>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
 
     <build>
         <plugins>
@@ -194,11 +213,6 @@
                     </configuration>
                 </plugin>
                 <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-changes-plugin</artifactId>
-                    <version>3.0.0-M3</version>
-                </plugin>
-                <plugin>
                     <groupId>ru.concerteza.buildnumber</groupId>
                     <artifactId>maven-jgit-buildnumber-plugin</artifactId>
                     <version>1.2.10</version>
@@ -233,6 +247,13 @@ checkstyle.suppressions=/rld/checkstyle/checkstyle-suppressions.xml
                         <enableRulesSummary>false</enableRulesSummary>
                         <includeTestSourceDirectory>true</includeTestSourceDirectory>
                     </configuration>
+                    <dependencies>
+                        <dependency>
+                            <groupId>com.reallifedeveloper</groupId>
+                            <artifactId>rld-build-tools</artifactId>
+                            <version>${rld-build-tools.version}</version>
+                        </dependency>
+                    </dependencies>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -245,6 +266,13 @@ checkstyle.suppressions=/rld/checkstyle/checkstyle-suppressions.xml
                         <targetJdk>${java.version}</targetJdk>
                         <format>xml</format>
                     </configuration>
+                    <dependencies>
+                        <dependency>
+                            <groupId>com.reallifedeveloper</groupId>
+                            <artifactId>rld-build-tools</artifactId>
+                            <version>${rld-build-tools.version}</version>
+                        </dependency>
+                    </dependencies>
                 </plugin>
                 <plugin>
                     <groupId>com.github.spotbugs</groupId>
@@ -263,6 +291,13 @@ checkstyle.suppressions=/rld/checkstyle/checkstyle-suppressions.xml
                             </plugin>
                         </plugins>
                     </configuration>
+                    <dependencies>
+                        <dependency>
+                            <groupId>com.reallifedeveloper</groupId>
+                            <artifactId>rld-build-tools</artifactId>
+                            <version>${rld-build-tools.version}</version>
+                        </dependency>
+                    </dependencies>
                 </plugin>
                 <plugin>
                     <groupId>org.owasp</groupId>
@@ -270,11 +305,15 @@ checkstyle.suppressions=/rld/checkstyle/checkstyle-suppressions.xml
                     <version>12.1.0</version>
                     <configuration>
                         <nvdApiKey>${nvd.api.key}</nvdApiKey>
-                        <!-- The plugin can only read a file, not a resource from classpath. -->
-                        <!-- This means that projects that use this parent POM must unpack -->
-                        <!-- the necessary suppression file under the target directory. -->
-                        <suppressionFile>target/classes/rld/owasp/suppress.xml</suppressionFile>
+                        <suppressionFile>rld/owasp/suppress.xml</suppressionFile>
                     </configuration>
+                    <dependencies>
+                        <dependency>
+                            <groupId>com.reallifedeveloper</groupId>
+                            <artifactId>rld-build-tools</artifactId>
+                            <version>${rld-build-tools.version}</version>
+                        </dependency>
+                    </dependencies>
                 </plugin>
                 <plugin>
                     <groupId>org.flywaydb</groupId>
@@ -794,17 +833,6 @@ checkstyle.suppressions=/rld/checkstyle/checkstyle-suppressions.xml
                         <reports>
                             <report>jxr</report>
                             <report>test-jxr</report>
-                        </reports>
-                    </reportSet>
-                </reportSets>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-changes-plugin</artifactId>
-                <reportSets>
-                    <reportSet>
-                        <reports>
-                            <report>github-changes</report>
                         </reports>
                     </reportSet>
                 </reportSets>
