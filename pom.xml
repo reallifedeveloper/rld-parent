@@ -12,7 +12,7 @@
     </parent>
 
     <artifactId>rld-parent</artifactId>
-    <version>20-SNAPSHOT</version>
+    <version>20</version>
     <packaging>pom</packaging>
 
     <name>RealLifeDeveloper Parent POM</name>
