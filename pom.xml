@@ -8,7 +8,7 @@
     <parent>
         <groupId>com.reallifedeveloper</groupId>
         <artifactId>rld-root-pom</artifactId>
-        <version>12</version>
+        <version>13</version>
     </parent>
 
     <artifactId>rld-parent</artifactId>
@@ -19,6 +19,9 @@
     <description>Common Maven configuration for RealLifeDeveloper projects.</description>
 
     <properties>
+        <rld-bom.version>20260215.1</rld-bom.version>
+        <rld-build-tools.version>2.1.14</rld-build-tools.version>
+
         <java.version>17</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -26,31 +29,30 @@
 
         <minimum.code-coverage>0.85</minimum.code-coverage>
 
-        <rld-bom.version>20250914.1</rld-bom.version>
-        <rld-build-tools.version>2.1.1</rld-build-tools.version>
-
         <maven-toolchains-plugin.version>3.2.0</maven-toolchains-plugin.version>
-        <maven-compiler-plugin.version>3.14.0</maven-compiler-plugin.version>
-        <maven-jar-plugin.version>3.4.2</maven-jar-plugin.version>
-        <maven-war-plugin.version>3.4.0</maven-war-plugin.version>
-        <maven-resources-plugin.version>3.3.1</maven-resources-plugin.version>
-        <maven-dependency-plugin.version>3.8.1</maven-dependency-plugin.version>
-        <maven-surefire-plugin.version>3.5.3</maven-surefire-plugin.version>
-        <versions-maven-plugin.version>2.18.0</versions-maven-plugin.version>
+        <maven-compiler-plugin.version>3.15.0</maven-compiler-plugin.version>
+        <maven-jar-plugin.version>3.5.0</maven-jar-plugin.version>
+        <maven-war-plugin.version>3.5.1</maven-war-plugin.version>
+        <maven-resources-plugin.version>3.4.0</maven-resources-plugin.version>
+        <maven-dependency-plugin.version>3.10.0</maven-dependency-plugin.version>
+        <maven-surefire-plugin.version>3.5.4</maven-surefire-plugin.version>
+        <versions-maven-plugin.version>2.21.0</versions-maven-plugin.version>
+        <taglist-maven-plugin.version>3.2.2</taglist-maven-plugin.version>
         <maven-project-info-reports-plugin.version>3.9.0</maven-project-info-reports-plugin.version>
-        <jdepend-maven-plugin.version>1.0.2</jdepend-maven-plugin.version>
-        <flyway-maven-plugin.version>11.11.2</flyway-maven-plugin.version>
-        <soapui-maven-plugin.version>5.9.0</soapui-maven-plugin.version>
+        <jdepend-maven-plugin.version>1.0.3</jdepend-maven-plugin.version>
+        <flyway-maven-plugin.version>12.0.1</flyway-maven-plugin.version>
+        <soapui-maven-plugin.version>5.9.1</soapui-maven-plugin.version>
         <fitnesse-launcher-maven-plugin.version>1.4.2</fitnesse-launcher-maven-plugin.version>
         <maven-checkstyle-plugin.version>3.6.0</maven-checkstyle-plugin.version>
-        <maven-pmd-plugin.version>3.27.0</maven-pmd-plugin.version>
-        <spotbugs-maven-plugin.version>4.9.4.0</spotbugs-maven-plugin.version>
+        <maven-pmd-plugin.version>3.28.0</maven-pmd-plugin.version>
+        <pmd.version>7.21.0</pmd.version>
+        <spotbugs-maven-plugin.version>4.9.8.2</spotbugs-maven-plugin.version>
         <findsecbugs-plugin.version>1.14.0</findsecbugs-plugin.version>
-        <owasp.dependency-check-maven.version>12.1.3</owasp.dependency-check-maven.version>
-        <pitest-maven.version>1.20.2</pitest-maven.version>
+        <owasp.dependency-check-maven.version>12.2.0</owasp.dependency-check-maven.version>
+        <pitest-maven.version>1.22.1</pitest-maven.version>
         <pitest-junit5-plugin.version>1.2.3</pitest-junit5-plugin.version>
-        <jacoco-maven-plugin.version>0.8.13</jacoco-maven-plugin.version>
-        <exec-maven-plugin.version>3.5.1</exec-maven-plugin.version>
+        <jacoco-maven-plugin.version>0.8.14</jacoco-maven-plugin.version>
+        <exec-maven-plugin.version>3.6.3</exec-maven-plugin.version>
 
         <!-- Override the following in a profile in ~/.m2/settings.xml -->
         <nvd.api.key>Get your OWASP key at https://nvd.nist.gov/developers/request-an-api-key</nvd.api.key>
@@ -172,7 +174,8 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-failsafe-plugin</artifactId>
                     <version>${maven-surefire-plugin.version}</version>
-                </plugin>                <plugin>
+                </plugin>
+                <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-resources-plugin</artifactId>
                     <version>${maven-resources-plugin.version}</version>
@@ -203,7 +206,7 @@
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>taglist-maven-plugin</artifactId>
-                    <version>3.2.1</version>
+                    <version>${taglist-maven-plugin.version}</version>
                 </plugin>
                 <plugin>
                     <groupId>com.reallifedeveloper</groupId>
@@ -277,6 +280,16 @@ checkstyle.suppressions=/rld/checkstyle/checkstyle-suppressions.xml
                             <groupId>com.reallifedeveloper</groupId>
                             <artifactId>rld-build-tools</artifactId>
                             <version>${rld-build-tools.version}</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>net.sourceforge.pmd</groupId>
+                            <artifactId>pmd-core</artifactId>
+                            <version>${pmd.version}</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>net.sourceforge.pmd</groupId>
+                            <artifactId>pmd-java</artifactId>
+                            <version>${pmd.version}</version>
                         </dependency>
                     </dependencies>
                 </plugin>
