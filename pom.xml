@@ -46,6 +46,7 @@
         <maven-checkstyle-plugin.version>3.6.0</maven-checkstyle-plugin.version>
         <maven-pmd-plugin.version>3.28.0</maven-pmd-plugin.version>
         <pmd.version>7.21.0</pmd.version>
+        <org.eclipse.sisu.version>0.9.0.M4</org.eclipse.sisu.version>
         <spotbugs-maven-plugin.version>4.9.8.2</spotbugs-maven-plugin.version>
         <findsecbugs-plugin.version>1.14.0</findsecbugs-plugin.version>
         <owasp.dependency-check-maven.version>12.2.0</owasp.dependency-check-maven.version>
@@ -89,6 +90,13 @@
         <dependency>
             <groupId>org.checkerframework</groupId>
             <artifactId>checker-qual</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <!-- This dependency is necessary for the maven-pmd-plugin to work-->
+        <dependency>
+            <groupId>org.eclipse.sisu</groupId>
+            <artifactId>org.eclipse.sisu.plexus</artifactId>
+            <version>${org.eclipse.sisu.version}</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
